@@ -220,8 +220,10 @@ export default {
       })
     },
     loadKPositions () {
-      var params = {}
-      params.page = this.current_page
+      var params = {
+        page: this.current_page
+      }
+      // params.page = this.current_page
       this.$axios.get('/api/v1/dish-producer', {
         params: params
       }).then(response => {

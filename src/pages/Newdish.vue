@@ -3,7 +3,13 @@
     <div style="width: 400px; max-width: 90vw; " >
       <h4>新建生鲜农产品</h4>
       <q-field icon="short_text">
-        <q-input v-model="dish_name" placeholder="产品名" />
+        <q-input v-model="dish_name" placeholder="产品名" @blur="nameBlur" />
+      </q-field>
+      <q-field icon="short_text">
+        <q-input v-model="temperature" placeholder="系统推荐温度阈值" />
+      </q-field>
+      <q-field icon="short_text">
+        <q-input v-model="humidity" placeholder="系统推荐湿度阈值" />
       </q-field>
       <q-field icon="description">
         <q-input v-model="description" placeholder="运送方式(常温运送 or 冷藏运送)" />
@@ -38,6 +44,8 @@ export default {
     return {
       expected_cooking_time: 20,
       dish_name: '',
+      temperature: '',
+      humidity: '',
       dish_tags: [],
       description: '',
       price: 1.0
@@ -45,6 +53,24 @@ export default {
   },
   mixins: [base],
   methods: {
+    // 产品名移除
+    nameBlur () {
+      console.log(111)
+      this.$axios.get('/api/v1/th', {
+        params: {
+          productName: this.dish_name
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.status !== 200) {
+          this.notifyWarn('请求错误')
+          return
+        }
+        console.log('res.data.temperature=', res.data.temperature)
+        this.temperature = res.data.data.temperature
+        this.humidity = res.data.data.humidity
+      })
+    },
     createDish () {
       if (this.checkStringNull(this.dish_name)) {
         this.notifyWarn('产品名不得为空')
