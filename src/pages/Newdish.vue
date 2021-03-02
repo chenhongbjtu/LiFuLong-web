@@ -78,6 +78,8 @@ export default {
       }
       this.$axios.post('/api/v1/dish/', {
         name: this.dish_name,
+        temperature: this.temperature,
+        humidity: this.humidity,
         description: this.description,
         tags: this.dish_tags.join(','),
         expected_cooking_time: this.expected_cooking_time,

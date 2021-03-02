@@ -27,8 +27,15 @@
             <a href="javascript:" @click.prevent="goPage('/edit-dish/'+dish.id)">{{dish.name}}({{dish.price}}元)</a>
           </q-card-title>
           <q-card-main>
-            {{dish.description}}
+            运输方式：{{dish.description}}
           </q-card-main>
+          <q-card-main>
+            温度阈值：{{dish.temperature}}
+          </q-card-main>
+          <q-card-main>
+            湿度阈值：{{dish.humidity}}
+          </q-card-main>
+
           <q-card-separator />
           <q-card-main v-if="!checkStringNull(dish.tags)">
             <q-chip v-for="tag in dish.tags.split(',')" v-bind:key="tag" small color="cyan-6">{{tag}}</q-chip>
