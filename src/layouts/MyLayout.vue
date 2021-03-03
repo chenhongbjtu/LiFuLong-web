@@ -79,7 +79,7 @@
 
         <q-item v-if="my_role==='超级管理员'" @click.native="goPage('/time-manage')">
           <q-item-side icon="smoking_rooms" />
-          <q-item-main label="时间计算" />
+          <q-item-main label="时间预警系统" />
         </q-item>
 
         <q-collapsible v-if="my_role==='订单管理员' || my_role==='超级管理员'" indent icon="recent_actors" label="配送管理" opened>
