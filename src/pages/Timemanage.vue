@@ -60,13 +60,20 @@ export default {
       dish_tags: [],
       miles2: '',
       time2: '',
-      price: 1.0
+      price: 1.0,
+      wisdom_return: ''
     }
   },
   mixins: [base],
   methods: {
     wisdom () {
-      alert('可正常运输')
+      console.log(this.time1)
+      console.log(this.time1 > 3)
+      if (this.time1 > 3) {
+        this.notifyWarn('运输风险大！建议取消运输！')
+        return
+      }
+      this.notifySuccess('可顺利运输！')
     },
     showcar_location () {
       this.car_location = '=>定位中...'
