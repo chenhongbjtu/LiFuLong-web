@@ -82,6 +82,11 @@
           <q-item-main label="时间预警系统" />
         </q-item>
 
+        <q-item v-if="my_role==='超级管理员'" @click.native="goPage('/th-manage')">
+          <q-item-side icon="smoking_rooms" />
+          <q-item-main label="温湿度监测系统" />
+        </q-item>
+
         <q-collapsible v-if="my_role==='订单管理员' || my_role==='超级管理员'" indent icon="recent_actors" label="配送管理" opened>
           <q-item class="main-item" @click.native="goPage('/order-manage')">
             <q-item-side icon="menu" />

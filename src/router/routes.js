@@ -10,6 +10,7 @@ const routes = [
       { path: '/user-manage', component: () => import('pages/Usermanage.vue') },
       { path: '/kitchen-manage', component: () => import('pages/Kitchenmanage.vue') },
       { path: '/time-manage', component: () => import('pages/Timemanage.vue') },
+      { path: '/th-manage', component: () => import('pages/Thmanage.vue') },
       { path: '/table-manage', component: () => import('pages/Tablemanage.vue') },
       { path: '/dish-manage', component: () => import('pages/Dishmanage.vue') },
       { path: '/report-manage', component: () => import('pages/Reportmanage.vue') },
