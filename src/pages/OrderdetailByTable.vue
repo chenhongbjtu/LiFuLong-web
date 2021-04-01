@@ -198,7 +198,7 @@ export default {
     },
     assignItemsByTable () {
       if (this.order_items == null || this.order_items.length < 1) {
-        this.notifyWarn('无可分配菜品')
+        this.notifyWarn('无可分配产品')
         return
       }
       var activeOrderId = this.order_items[0].order_id

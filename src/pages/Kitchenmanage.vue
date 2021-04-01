@@ -10,7 +10,7 @@
       <div class="row justify-center">
         <q-card v-bind:class="{'offline-card': position.status==='offline', 'online-card': position.status==='online', 'blocking-card': position.status==='blocking' }" v-for="position in positions" v-bind:key="position.id" inline class="q-ma-sm">
           <q-card-media>
-            <img src="statics/chuwei.png">
+            <img src="statics/chuwei.jpg">
             <q-card-title slot="overlay">
              {{position.producer_number}}
              <span slot="subtitle">{{position.description}}</span>

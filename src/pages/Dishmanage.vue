@@ -21,7 +21,7 @@
       <div style="margin-left:10px;" class="justify-center">
         <q-card style="max-width: 200px" v-for="dish in dishes" v-bind:key="dish.id" inline class="q-ma-sm">
           <q-card-media>
-            <img :src="dish.thumbnail===null?'/statics/dish.png':dish.thumbnail" style="cursor:pointer;" @click="goPage('/edit-dish/'+dish.id)">
+            <img :src="dish.thumbnail===null?'/statics/dish.jpg':dish.thumbnail" style="cursor:pointer;" @click="goPage('/edit-dish/'+dish.id)">
           </q-card-media>
           <q-card-title>
             <a href="javascript:" @click.prevent="goPage('/edit-dish/'+dish.id)">{{dish.name}}({{dish.price}}元)</a>

@@ -7,7 +7,7 @@
       <div class="row justify-center">
         <q-card v-for="table in tables" v-bind:key="table.id" inline class="q-ma-sm">
           <q-card-media>
-            <img src="statics/table.png">
+            <img src="statics/table.jpg">
             <q-card-title slot="overlay">
               {{table.table_number}}
             <span slot="subtitle">{{table.description}}</span>

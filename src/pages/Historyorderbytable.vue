@@ -157,7 +157,7 @@ export default {
       this.$axios.get('/api/v1/table/' + this.table_id).then(response => {
         this.table_no = response.data.table_number
       }).catch(e => {
-        this.notifyFail('载入餐桌信息失败')
+        this.notifyFail('载入地址信息失败')
       })
     }
   }

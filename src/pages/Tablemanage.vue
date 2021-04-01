@@ -10,7 +10,7 @@
       <div class="row justify-center">
         <q-card v-for="table in tables" v-bind:key="table.id" inline class="q-ma-sm">
           <q-card-media>
-            <img src="statics/table.png">
+            <img src="statics/table.jpg">
             <q-card-title slot="overlay">
               {{table.table_number}}
             <span slot="subtitle">{{table.description}}</span>
@@ -137,7 +137,7 @@ export default {
     deleteTable (id) {
       this.$q.dialog({
         title: '确认',
-        message: '确认删除该餐桌吗？',
+        message: '确认删除该地址吗？',
         ok: '是',
         cancel: '否'
       }).then(() => {

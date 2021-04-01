@@ -15,12 +15,6 @@
         <q-input v-model="tm_currentlocation" placeholder="点击获取当前订单配送所在位置" @click="showtm_currentlocation"/>
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="tm_miles1" placeholder="点击获取仓库与目的地之间的距离" @click="showmessage1"/>
-      </q-field>
-      <q-field icon="short_text">
-        <q-input v-model="tm_miles2" placeholder="仓库到目的地的时间预计" />
-      </q-field>
-      <q-field icon="short_text">
         <q-input v-model="tm_miles3" placeholder="点击获取当前配送所在位置与目的地之间的距离" @click="showmessage2"/>
       </q-field>
       <q-field icon="short_text">
@@ -43,8 +37,6 @@ export default {
       tm_list: '',
       tm_finallocation: '',
       tm_currentlocation: '',
-      tm_miles1: '',
-      tm_miles2: '',
       tm_miles3: '',
       tm_miles4: ''
     }
@@ -82,27 +74,10 @@ export default {
         this.tm_currentlocation = res.data.culocation
       })
     },
-    showmessage1 () {
-      this.$axios.get('/api/v1/map', {
-        params: {
-          start: this.tm_location,
-          end: this.tm_finallocation
-        }
-      }).then(res => {
-        console.log(res)
-        if (res.status !== 200) {
-          this.notifyWarn('请求错误')
-          return
-        }
-        this.tm_miles1 = res.data.data.distance
-        this.tm_miles2 = res.data.data.time
-      })
-    },
     showmessage2 () {
-      this.$axios.get('/api/v1/map', {
+      this.$axios.get('/api/v1/time', {
         params: {
-          start: this.tm_currentlocation,
-          end: this.tm_finallocation
+          order_no: this.tm_list
         }
       }).then(res => {
         console.log(res)
@@ -110,8 +85,8 @@ export default {
           this.notifyWarn('请求错误')
           return
         }
-        this.tm_miles1 = res.data.data.distance
-        this.tm_miles2 = res.data.data.time
+        this.tm_miles3 = res.data.data.distance
+        this.tm_miles4 = res.data.data.time
       })
     }
   }
