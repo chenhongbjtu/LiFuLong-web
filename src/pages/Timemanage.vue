@@ -1,39 +1,30 @@
 <template>
   <q-page style="margin-top:10px;" class="row justify-center">
     <div style="width: 400px; max-width: 90vw; " >
-      <h4>预警系统</h4>
+      <h4>时间预警系统</h4>
       <q-field icon="short_text">
-        <q-input v-model="wh_location" placeholder="仓库地址" />
+        <q-input v-model="tm_location" placeholder="点击获取仓库地址" @click="showtm_location"/>
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="season" placeholder="农产品种类(肉类、蔬菜类、水果类)" />
+        <q-input v-model="tm_list" placeholder="请输入订单号" />
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="season1" placeholder="变质风险（低、中、高）" />
+        <q-input v-model="tm_finallocation" placeholder="点击获取配送目的地" @click="showtm_finallocation"/>
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="season2" placeholder="储存方式（冷藏、常温、高温）" />
+        <q-input v-model="tm_currentlocation" placeholder="点击获取当前订单配送所在位置" @click="showtm_currentlocation"/>
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="car_location" placeholder="点击定位车辆当前位置" @click="showcar_location" />
+        <q-input v-model="tm_miles1" placeholder="点击获取仓库与目的地之间的距离" @click="showmessage1"/>
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="destination" placeholder="配送目的地" />
+        <q-input v-model="tm_miles2" placeholder="仓库到目的地的时间预计" />
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="miles1" placeholder="仓库与目的地之间的距离" @click="show_miles1" />
+        <q-input v-model="tm_miles3" placeholder="点击获取当前配送所在位置与目的地之间的距离" @click="showmessage2"/>
       </q-field>
       <q-field icon="short_text">
-        <q-input v-model="time1" placeholder="仓库到目的地的时间预计" />
-      </q-field>
-      <q-field icon="short_text">
-        <q-input v-model="miles2" placeholder="当前车辆位置与目的地之间的距离" @click="show_miles2" />
-      </q-field>
-      <q-field icon="short_text">
-        <q-input v-model="time2" placeholder="当前车辆位置到目的地的时间预计" />
-      </q-field>
-      <q-field>
-        <q-btn @click="wisdom" icon="description" color="blue-7" label="> 智慧预警查看 <" />
+        <q-input v-model="tm_miles4" placeholder="当前配送所在位置到目的地的时间预计" />
       </q-field>
     </div>
   </q-page>
@@ -48,45 +39,25 @@ export default {
   name: 'Timemanage',
   data () {
     return {
-      expected_cooking_time: 20,
-      season: '',
-      season1: '',
-      season2: '',
-      wh_location: '',
-      car_location: '',
-      destination: '',
-      miles1: '',
-      time1: '',
-      dish_tags: [],
-      miles2: '',
-      time2: '',
-      price: 1.0,
-      wisdom_return: ''
+      tm_location: '',
+      tm_list: '',
+      tm_finallocation: '',
+      tm_currentlocation: '',
+      tm_miles1: '',
+      tm_miles2: '',
+      tm_miles3: '',
+      tm_miles4: ''
     }
   },
   mixins: [base],
   methods: {
-    wisdom () {
-      console.log(this.time1)
-      console.log(this.time1 > 3)
-      if (this.time1 > 3) {
-        this.notifyWarn('运输风险大！建议取消运输！')
-        return
-      }
-      this.notifySuccess('可顺利运输！')
+    showtm_location () {
+      this.tm_location = '仲恺农业工程学院'
     },
-    showcar_location () {
-      this.car_location = '=>定位中...'
-      setTimeout(() => {
-        this.car_location = '仲恺农业工程学院'
-      }, 1600)
-    },
-    show_miles1 () {
-      this.miles1 = '=>计算中...'
-      this.$axios.get('/api/v1/map', {
+    showtm_finallocation () {
+      this.$axios.get('api/vi/getdestination', {
         params: {
-          start: this.wh_location,
-          end: this.destination
+          order_no: this.tm_list
         }
       }).then(res => {
         console.log(res)
@@ -94,16 +65,13 @@ export default {
           this.notifyWarn('请求错误')
           return
         }
-        this.miles1 = res.data.data.distance
-        this.time1 = res.data.data.time
+        this.tm_finallocation = res.data.data
       })
     },
-    show_miles2 () {
-      this.miles2 = '=>计算中...'
-      this.$axios.get('/api/v1/map', {
+    showtm_currentlocation () {
+      this.$axios.get('/api/vi/humiwarn', {
         params: {
-          start: this.car_location,
-          end: this.destination
+          order_no: this.tm_list
         }
       }).then(res => {
         console.log(res)
@@ -111,77 +79,39 @@ export default {
           this.notifyWarn('请求错误')
           return
         }
-        this.miles2 = res.data.data.distance
-        this.time2 = res.data.data.time
+        this.tm_currentlocation = res.data.culocation
       })
     },
-    createDish () {
-      if (this.checkStringNull(this.wh_location)) {
-        this.notifyWarn('仓库地址不得为空')
-        return
-      }
-      this.$axios.post('/api/v1/dish/', {
-        name: this.dish_name,
-        temperature: this.temperature,
-        humidity: this.humidity,
-        description: this.description,
-        tags: this.dish_tags.join(','),
-        expected_cooking_time: this.expected_cooking_time,
-        price: this.price
-      }).then(response => {
-        if (response.data.ok === true) {
-          this.$q.notify({
-            color: 'green',
-            textColor: 'white',
-            icon: 'thumb_up',
-            message: response.data.message,
-            position: 'top-right',
-            avatar: 'statics/huaji.png'
-          })
-          this.goPage('/dish-manage')
-        } else {
-          this.$q.notify({
-            color: 'red',
-            textColor: 'white',
-            icon: 'thumb_up',
-            message: response.data.message,
-            position: 'top-right',
-            avatar: 'statics/sad.png'
-          })
+    showmessage1 () {
+      this.$axios.get('/api/v1/map', {
+        params: {
+          start: this.tm_location,
+          end: this.tm_finallocation
         }
-      }).catch(e => {
-        this.$q.notify({
-          color: 'red',
-          textColor: 'white',
-          icon: 'thumb_up',
-          message: '未知错误',
-          position: 'top-right',
-          avatar: 'statics/sad.png'
-        })
+      }).then(res => {
+        console.log(res)
+        if (res.status !== 200) {
+          this.notifyWarn('请求错误')
+          return
+        }
+        this.tm_miles1 = res.data.data.distance
+        this.tm_miles2 = res.data.data.time
       })
     },
-    selected (item) {
-      console.log(item.label)
-    },
-    duplicate (label) {
-      this.$q.notify(`"${label}" 重复标签`)
-    },
-    search (terms, done) {
-      var searchParams = {}
-      searchParams.search_field = terms
-      this.$axios.get('/api/v1/dish/tag', {
-        params: searchParams
-      }).then(response => {
-        let tags = response.data
-        var results = tags.map(tag => {
-          return {
-            label: tag.name,
-            icon: 'filter_vintage',
-            value: tag.name
-          }
-        })
-        // Call done and pass the result set
-        done(results)
+    showmessage2 () {
+      this.$axios.get('/api/v1/map', {
+        params: {
+          start: this.tm_currentlocation,
+          end: this.tm_finallocation
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.status !== 200) {
+          this.notifyWarn('请求错误')
+          return
+        }
+        this.tm_miles1 = res.data.data.distance
+        this.tm_miles2 = res.data.data.time
       })
     }
   }
