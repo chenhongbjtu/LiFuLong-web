@@ -1,7 +1,7 @@
 <template>
   <q-page style="margin-top:10px;" class="row justify-center">
     <div style="width: 400px; max-width: 90vw; " >
-      <h4>时间预警系统</h4>
+      <h4>配送时间预警</h4>
       <q-field icon="short_text">
         <q-input v-model="tm_location" placeholder="点击获取仓库地址" @click="showtm_location"/>
       </q-field>

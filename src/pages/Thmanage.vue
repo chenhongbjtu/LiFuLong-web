@@ -1,7 +1,7 @@
 <template>
   <q-page style="margin-top:10px;" class="row justify-center">
     <div style="width: 400px; max-width: 90vw; " >
-      <h4>温湿度监测系统</h4>
+      <h4>温湿度监测</h4>
       <q-field icon="short_text">
         <q-input v-model="order_number" placeholder="请输入订单号" />
       </q-field>

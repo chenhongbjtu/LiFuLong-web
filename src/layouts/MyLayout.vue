@@ -18,8 +18,8 @@
         </q-btn>
 
         <q-toolbar-title>
-          <a @click="goPage('/')" style="cursor:pointer;">李富龙</a>
-          <div slot="subtitle">生鲜农产品自营配送监测预警系统</div>
+          <a @click="goPage('/')" style="cursor:pointer;">生鲜农产品自营配送监测预警系统</a>
+          <div slot="subtitle">你好，李富龙！</div>
         </q-toolbar-title>
         <q-btn-dropdown flat :label="user">
         <q-list link>
@@ -79,12 +79,12 @@
 
         <q-item v-if="my_role==='超级管理员'" @click.native="goPage('/time-manage')">
           <q-item-side icon="smoking_rooms" />
-          <q-item-main label="时间预警系统" />
+          <q-item-main label="配送时间预警" />
         </q-item>
 
         <q-item v-if="my_role==='超级管理员'" @click.native="goPage('/th-manage')">
           <q-item-side icon="smoking_rooms" />
-          <q-item-main label="温湿度监测系统" />
+          <q-item-main label="温湿度监测" />
         </q-item>
 
         <q-collapsible v-if="my_role==='订单管理员' || my_role==='超级管理员'" indent icon="recent_actors" label="配送管理" opened>
