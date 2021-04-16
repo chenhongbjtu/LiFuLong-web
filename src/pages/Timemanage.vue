@@ -44,7 +44,7 @@ export default {
   mixins: [base],
   methods: {
     showtm_location () {
-      this.tm_location = '仲恺农业工程学院'
+      this.tm_location = '广州钱大妈总部'
     },
     showtm_finallocation () {
       this.$axios.get('api/vi/getdestination', {

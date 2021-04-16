@@ -21,6 +21,7 @@ const routes = [
       { path: '/edit-dish/:id', component: () => import('pages/Editdish.vue') },
       { path: '/order-manage', component: () => import('pages/Ordermanage.vue') },
       { path: '/order-detail/:id', component: () => import('pages/Orderdetail.vue') },
+      { path: '/delivery-man', component: () => import('pages/DeliveryMan.vue') },
       { path: '/order-detail-by-table/:id', component: () => import('pages/OrderdetailByTable.vue') },
       { path: '/order-by-table', component: () => import('pages/OrderByTable.vue') },
       { path: '/add-dish-item-4-order/:id', component: () => import('pages/Adddishitem4order.vue') },

@@ -30,7 +30,7 @@ module.exports = function (ctx) {
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          // loader: 'eslint-loader',
           exclude: /node_modules/
         })
       }
@@ -94,9 +94,9 @@ module.exports = function (ctx) {
         'CloseOverlay'
       ],
       // Quasar plugins
-      plugins: [
-        'Notify','Dialog','Loading'
-      ],
+      // plugins: [
+      //   'Notify','Dialog','Loading'
+      // ],
       // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
       i18n: 'zh-hans' // Quasar language
     },
