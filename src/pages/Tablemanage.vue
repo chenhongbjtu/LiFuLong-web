@@ -2,10 +2,10 @@
   <q-page style="margin-top:10px;" class="row justify-center" >
     <div style="max-width: 90vw;" >
       <div class="row justify-center">
-        <h4>配送地址管理</h4>
+        <h4>配送门店管理</h4>
       </div>
       <div class="row justify-center">
-        <q-btn @click="newTable" color="blue" label="新建地址" title="新建地址" icon="playlist_add"/>
+        <q-btn @click="newTable" color="blue" label="新增门店" title="新增门店" icon="playlist_add"/>
       </div>
       <div class="row justify-center">
         <q-card v-for="table in tables" v-bind:key="table.id" inline class="q-ma-sm">
@@ -42,18 +42,18 @@
     @hide="onHide"
     >
     <!-- 这里可能使用<q-dialog>的"title"属性 -->
-    <span slot="title">新建地址</span>
+    <span slot="title">新增门店</span>
     <div slot="body">
     <q-field
      icon="settings_input_composite"
-     label="地址(必填)"
+     label="门店地址(必填)"
      :label-width="5"
     >
      <q-input v-model="k_table_no" />
     </q-field>
     <q-field
      icon="description"
-     label="描述(家庭地址or公司地址or?)"
+     label="描述(店的昵称?)"
      :label-width="4"
     >
      <q-input v-model="k_description" />
