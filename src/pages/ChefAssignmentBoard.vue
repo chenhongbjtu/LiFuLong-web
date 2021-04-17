@@ -2,7 +2,7 @@
   <q-page style="margin-top:10px;" class="row justify-center" >
     <div style="max-width: 90vw;" >
       <div class="row justify-center">
-        <h4>产品订单分配仓库视图</h4>
+        <h4>产品订单分配运输车视图</h4>
       </div>
       <div class="row justify-center" style="margin-bottom:10px;">
         <q-toggle @input="switchOnline" v-model="online_only" color="secondary" label="不显示离线" />

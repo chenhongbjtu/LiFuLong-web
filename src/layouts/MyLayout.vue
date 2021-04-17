@@ -74,7 +74,7 @@
         </q-item>
         <q-item v-if="my_role==='超级管理员'" @click.native="goPage('/kitchen-manage')">
           <q-item-side icon="smoking_rooms" />
-          <q-item-main label="仓库管理" />
+          <q-item-main label="运输车管理" />
         </q-item>
 
         <q-item v-if="my_role==='超级管理员'" @click.native="goPage('/time-manage')">
@@ -102,7 +102,7 @@
             <q-item-main label="地址视图" />
           </q-item>
         </q-collapsible>
-        <q-collapsible v-if="my_role==='仓库管理员' || my_role==='超级管理员'" indent icon="assignment_ind" label="仓库视图" opened>
+        <q-collapsible v-if="my_role==='仓库管理员' || my_role==='超级管理员'" indent icon="assignment_ind" label="运输车视图" opened>
           <q-item class="main-item" @click.native="goPage('/chef-assignment-board')">
             <q-item-side icon="assignment" />
             <q-item-main label="订单分配视图" />

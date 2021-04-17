@@ -2,10 +2,10 @@
   <q-page  style="margin-top:10px;" class="row justify-center"  >
     <div style="width: 700px; max-width: 90vw;" >
       <div class="row justify-center">
-        <h4>仓库管理</h4>
+        <h4>运输车管理</h4>
       </div>
       <div class="row justify-center">
-        <q-btn @click="newPosition" color="blue" title="新建仓库" label="新建仓库" icon="playlist_add"/>
+        <q-btn @click="newPosition" color="blue" title="添加运输车" label="添加运输车" icon="playlist_add"/>
       </div>
       <div class="row justify-center">
         <q-card v-bind:class="{'offline-card': position.status==='offline', 'online-card': position.status==='online', 'blocking-card': position.status==='blocking' }" v-for="position in positions" v-bind:key="position.id" inline class="q-ma-sm">
@@ -58,22 +58,24 @@
     @hide="onHide"
     >
     <!-- 这里可能使用<q-dialog>的"title"属性 -->
-    <span slot="title">新建仓库</span>
+    <span slot="title">添加运输车</span>
     <div slot="body">
     <q-field
      icon="settings_input_composite"
-     label="仓库类别(必填)"
+     label="运输车车牌号"
      :label-width="5"
     >
      <q-input v-model="k_position_no" />
     </q-field>
     <q-field
      icon="description"
-     label="仓库是否消毒"
+     label="配送人员"
      :label-width="4"
     >
      <q-input v-model="k_description" />
     </q-field>
+
+
     </div>
 
     <template slot="buttons" slot-scope="props">
@@ -89,18 +91,18 @@
     @hide="onHide"
     >
     <!-- 这里可能使用<q-dialog>的"title"属性 -->
-    <span slot="title">编辑仓库</span>
+    <span slot="title">编辑运输车</span>
     <div slot="body">
     <q-field
      icon="settings_input_composite"
-     label="仓库种类(必填)"
+     label="运输车车牌号"
      :label-width="5"
     >
      <q-input v-model="k_dish_producer_no" />
     </q-field>
     <q-field
      icon="description"
-     label="仓库是否消毒"
+     label="配送人员名字"
      :label-width="4"
     >
     <q-input v-model="k_dish_producer_description" />

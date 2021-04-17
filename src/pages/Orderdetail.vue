@@ -18,7 +18,7 @@
         <template slot="top-left" slot-scope="props">
           <q-btn v-if="props!=null && order_status!=='finished'" title="返回配送中订单列表"  color="purple-7" icon="keyboard_return" label="返回" @click="goPage('/order-manage')" />
           <q-btn v-if="props!=null && order_status==='finished'" title="返回历史订单列表"  color="purple-7" icon="keyboard_return" label="返回" @click="goPage('/report-manage')" />
-          <q-btn :disabled="order_status==='finished'" style="margin-left:10px;" v-if="props!=null"  title="分配产品到仓库" color="teal-6" label="分配到仓库" @click="assignItems" icon="assignment_returned" />
+          <q-btn :disabled="order_status==='finished'" style="margin-left:10px;" v-if="props!=null"  title="分配产品到仓库" color="teal-6" label="分配给运输车" @click="assignItems" icon="assignment_returned" />
           <q-btn style="margin-left:10px;" v-if="props!=null && order_status!=='finished'"  title="结束订单(已买单)" color="positive" label="结束订单" @click="finishOrder" icon="done all" />
           <q-btn style="margin-left:10px;" v-if="props!=null && order_status!=='finished'"  title="添加产品" color="blue" label="添加产品" @click="toAddDishPage" icon="add" />
           <q-chip color="blue-grey-13" v-if="props!=null && order_status==='finished'" style="margin-left:10px;">已完成</q-chip>
@@ -119,7 +119,7 @@ export default {
         {
           name: 'ProducerNumber',
           required: true,
-          label: '分配仓库',
+          label: '分配运输车',
           align: 'left',
           field: 'producer_number',
           sortable: false

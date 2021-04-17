@@ -117,7 +117,7 @@ export default {
         }, {
           name: 'ProducerNumber',
           required: true,
-          label: '分配仓库',
+          label: '分配运输车',
           align: 'left',
           field: 'producer_number',
           sortable: true
